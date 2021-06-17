@@ -3,7 +3,7 @@ from scene import scene
 from setup import main_setup
 
 main_setup()
-
+print('test')
 if int(sys.version[0]) < 3:
     print("Error detected. Wrong python version.")
 
