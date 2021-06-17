@@ -61,10 +61,53 @@ class StartScene(SceneBase):
     def __init__(self, screen):
         SceneBase.__init__(self)
         self.screen = screen
+        self.buttons_interact = None
+        self.init()
+
+    def init(self):
+        self.buttons = []
+        # social buttons
+        self.socialbutton1 = pygame.rect.Rect(self.screen.get_width() - 80, 10, 70, 70)
+        self.socialbutton2 = pygame.rect.Rect(self.screen.get_width() - 160, 10, 70, 70)
+        self.socialbutton3 = pygame.rect.Rect(self.screen.get_width() - 240, 10, 70, 70)
+        self.github_image = pygame.image.load("./images/rsz_github.png")
+        self.discord_image = pygame.image.load("./images/rsz_discord.png")
+        self.twitter_image = pygame.image.load("./images/rsz_twitter.png")
+        self.buttons.append(self.socialbutton1)
+        self.buttons.append(self.socialbutton2)
+        self.buttons.append(self.socialbutton3)
+
+        # the quit button
+        self.quit_button = pygame.rect.Rect(265, self.screen.get_height() - 200, 269, 80)
+        self.buttons.append(self.quit_button)
+        self.quit_button_text = pygame.font.Font(font, 38).render("Quit game", True, (0, 0, 0))
+
 
     def ProcessInput(self, events, pressed_keys):
         for event in events:
-            pass
+            if event.type == pygame.MOUSEMOTION:
+                mouse_pos = event.pos
+                for button in self.buttons:
+                    if button.collidepoint(mouse_pos):
+                        self.buttons_interact = button
+                        break
+                    else:
+                        self.buttons_interact = None
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = event.pos
+
+                if self.quit_button.collidepoint(mouse_pos):
+                    pygame.quit()
+                    exit()
+                if self.socialbutton1.collidepoint(mouse_pos):
+                    webbrowser.open("https://github.com/banjo-studios/project-skate")
+                    exit()
+                if self.socialbutton2.collidepoint(mouse_pos):
+                    webbrowser.open("https://discord.gg/6v4GR23cqs")
+                    exit()
+                if self.socialbutton3.collidepoint(mouse_pos):
+                    webbrowser.open("https://twitter.com/thebanjostudios")
+                    exit()
 
     def Update(self):
         pass
