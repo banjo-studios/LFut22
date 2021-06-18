@@ -114,3 +114,14 @@ class StartScene(SceneBase):
 
     def Render(self, screen):
         screen.fill((255, 255, 255))
+
+        for button in self.buttons:
+            if button == self.buttons_interact:
+                draw_rounded_rect(screen, button, (136, 136, 136), 18)
+            else:
+                draw_rounded_rect(screen, button, (255, 255, 255), 18)
+
+            screen.blit(self.github_image, (self.screen.get_width() - 75, 15))
+            screen.blit(self.discord_image, (self.screen.get_width() - 152.5, 17.5))
+            screen.blit(self.twitter_image, (self.screen.get_width() - 237, 14))
+            screen.blit(self.quit_button_text, (288, self.screen.get_height() - 187))
