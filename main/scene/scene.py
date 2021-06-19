@@ -66,6 +66,7 @@ class StartScene(SceneBase):
 
     def init(self):
         self.buttons = []
+        self.start_bg = pygame.image.load("./images/LFut.png")
         # social buttons
         self.socialbutton1 = pygame.rect.Rect(self.screen.get_width() - 80, 10, 70, 70)
         self.socialbutton2 = pygame.rect.Rect(self.screen.get_width() - 160, 10, 70, 70)
@@ -82,7 +83,6 @@ class StartScene(SceneBase):
         self.buttons.append(self.quit_button)
         self.quit_button_text = pygame.font.Font(font, 38).render("Quit game", True, (0, 0, 0))
 
-        self.start_bg = pygame.image.load("./images/LFut.png")
 
 
     def ProcessInput(self, events, pressed_keys):
@@ -115,7 +115,8 @@ class StartScene(SceneBase):
         pass
 
     def Render(self, screen):
-        screen.fill((255, 255, 255))
+        self.init()
+        screen.blit(self.start_bg, (0, 0))
 
         for button in self.buttons:
             if button == self.buttons_interact:
@@ -123,8 +124,8 @@ class StartScene(SceneBase):
             else:
                 draw_rounded_rect(screen, button, (255, 255, 255), 18)
 
+
             screen.blit(self.github_image, (self.screen.get_width() - 75, 15))
             screen.blit(self.discord_image, (self.screen.get_width() - 152.5, 17.5))
             screen.blit(self.twitter_image, (self.screen.get_width() - 237, 14))
             screen.blit(self.quit_button_text, (288, self.screen.get_height() - 187))
-            screen.blit(self.start_bg, (0, 0))
