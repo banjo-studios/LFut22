@@ -82,6 +82,8 @@ class StartScene(SceneBase):
         self.buttons.append(self.quit_button)
         self.quit_button_text = pygame.font.Font(font, 38).render("Quit game", True, (0, 0, 0))
 
+        self.start_bg = pygame.image.load("./images/LFut.png")
+
 
     def ProcessInput(self, events, pressed_keys):
         for event in events:
@@ -125,3 +127,4 @@ class StartScene(SceneBase):
             screen.blit(self.discord_image, (self.screen.get_width() - 152.5, 17.5))
             screen.blit(self.twitter_image, (self.screen.get_width() - 237, 14))
             screen.blit(self.quit_button_text, (288, self.screen.get_height() - 187))
+            screen.blit(self.start_bg, (0, 0))
