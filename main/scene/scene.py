@@ -69,7 +69,7 @@ class StartScene(SceneBase):
     def init(self):
         self.buttons = []
         self.start_bg = pygame.image.load("./images/game_menu.png")
-        # social buttons
+        self.start_bg = pygame.transform.scale(self.start_bg, (self.screen.get_width(), self.screen.get_height()))
         self.socialbutton1 = pygame.rect.Rect(self.screen.get_width() - 80, 10, 70, 70)
         self.socialbutton2 = pygame.rect.Rect(self.screen.get_width() - 160, 10, 70, 70)
         self.socialbutton3 = pygame.rect.Rect(self.screen.get_width() - 240, 10, 70, 70)
@@ -81,17 +81,17 @@ class StartScene(SceneBase):
         self.buttons.append(self.socialbutton3)
 
         # the quit button
-        self.quit_button = pygame.rect.Rect(265, self.screen.get_height() - 200, 269, 80)
+        self.quit_button = pygame.rect.Rect(self.screen.get_width() - 1400, self.screen.get_height() - 100, 269, 80)
         self.buttons.append(self.quit_button)
         self.quit_button_text = pygame.font.Font(font, 38).render("Quit game", True, (0, 0, 0))
 
-        self.play_button = pygame.rect.Rect(525, self.screen.get_height() - 885, 120, 60)
+        self.play_button = pygame.rect.Rect(self.screen.get_width() - 1055, self.screen.get_height() - 735, 120, 50)
         self.buttons.append(self.play_button)
         self.play_button_text = pygame.font.Font(font,38).render("Play", True, (0, 0, 0))
 
         # Background Sound
-        mixer.music.load('Stadium_Noises.mp3')
-        mixer.music.play(-1)
+        #mixer.music.load('Stadium_Noises.mp3')
+        #mixer.music.play(-1)
 
 
     def ProcessInput(self, events, pressed_keys):
@@ -140,39 +140,21 @@ class StartScene(SceneBase):
             screen.blit(self.github_image, (self.screen.get_width() - 75, 15))
             screen.blit(self.discord_image, (self.screen.get_width() - 152.5, 17.5))
             screen.blit(self.twitter_image, (self.screen.get_width() - 237, 14))
-            screen.blit(self.quit_button_text, (288, self.screen.get_height() - 187))
-            screen.blit(self.play_button_text, (535, self.screen.get_height() - 885))
+            screen.blit(self.quit_button_text, (self.screen.get_width() - 1380, self.screen.get_height() - 90))
+            screen.blit(self.play_button_text, (self.screen.get_width() - 1047, self.screen.get_height() - 737))
 
 
 class OnlineScene(SceneBase):
     def __init__(self, screen):
         SceneBase.__init__(self)
         self.screen = screen
-        self.interacting_button = None
-
-    def init(self):
-        self.buttons = []
-        self.back_button = pygame.rect.Rect(265, self.screen.get_height() - 200, 269, 80)
-        self.buttons.append(self.back_button)
-        self.back_button_text = pygame.font.Font(font, 38).render("Back", True, (0, 0, 0))
-
 
     def ProcessInput(self, events, pressed_keys):
         for event in events:
-            if self.back_button.collidepoint(mouse_pos):
-                self.SwitchToScene(StartScene(self.screen))
+            pass
 
     def Update(self):
         pass
 
     def Render(self, screen):
         screen.fill((255, 255, 255))
-
-        for button in self.buttons:
-            if button == self.interacting_button:
-                draw_rounded_rect(screen, button, (136, 136, 136), 18)
-            else:
-                draw_rounded_rect(screen, button, (255, 255, 255), 18)
-
-            screen.blit(self.back_button_text, (288, self.screen.get_height() - 187))
-
