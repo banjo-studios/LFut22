@@ -93,6 +93,11 @@ class StartScene(SceneBase):
         #mixer.music.load('Stadium_Noises.mp3')
         #mixer.music.play(-1)
 
+        # the football players
+        self.player_1 = pygame.image.load("./images/football_1.png")
+        self.player_1 = pygame.transform.scale(self.player_1, (527, 384))
+        self.player_2 = pygame.image.load("./images/football_2.png")
+
 
     def ProcessInput(self, events, pressed_keys):
         for event in events:
@@ -142,6 +147,7 @@ class StartScene(SceneBase):
             screen.blit(self.twitter_image, (self.screen.get_width() - 237, 14))
             screen.blit(self.quit_button_text, (self.screen.get_width() - 1855, self.screen.get_height() - 90))
             screen.blit(self.play_button_text, (self.screen.get_width() - 1382, self.screen.get_height() - 878))
+            screen.blit(self.player_1, (self.screen.get_width() - 775, self.screen.get_height() - 820))
 
 
 class OnlineScene(SceneBase):
