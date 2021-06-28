@@ -81,11 +81,11 @@ class StartScene(SceneBase):
         self.buttons.append(self.socialbutton3)
 
         # the quit button
-        self.quit_button = pygame.rect.Rect(self.screen.get_width() - 1400, self.screen.get_height() - 100, 269, 80)
+        self.quit_button = pygame.rect.Rect(self.screen.get_width() - 1875, self.screen.get_height() - 100, 269, 80)
         self.buttons.append(self.quit_button)
         self.quit_button_text = pygame.font.Font(font, 38).render("Quit game", True, (0, 0, 0))
 
-        self.play_button = pygame.rect.Rect(self.screen.get_width() - 1055, self.screen.get_height() - 735, 120, 50)
+        self.play_button = pygame.rect.Rect(self.screen.get_width() - 1390, self.screen.get_height() - 880, 120, 50)
         self.buttons.append(self.play_button)
         self.play_button_text = pygame.font.Font(font,38).render("Play", True, (0, 0, 0))
 
@@ -140,8 +140,8 @@ class StartScene(SceneBase):
             screen.blit(self.github_image, (self.screen.get_width() - 75, 15))
             screen.blit(self.discord_image, (self.screen.get_width() - 152.5, 17.5))
             screen.blit(self.twitter_image, (self.screen.get_width() - 237, 14))
-            screen.blit(self.quit_button_text, (self.screen.get_width() - 1380, self.screen.get_height() - 90))
-            screen.blit(self.play_button_text, (self.screen.get_width() - 1047, self.screen.get_height() - 737))
+            screen.blit(self.quit_button_text, (self.screen.get_width() - 1855, self.screen.get_height() - 90))
+            screen.blit(self.play_button_text, (self.screen.get_width() - 1382, self.screen.get_height() - 878))
 
 
 class OnlineScene(SceneBase):
