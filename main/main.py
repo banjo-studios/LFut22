@@ -11,7 +11,6 @@ nameOfGame = "LFut22"
 pygame.init()
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 pygame.display.set_caption(nameOfGame, nameOfGame)
-#pygame.display.set_icon(pygame.image.load('./images/logo.png'))
 settings_data = json.load(open("../player/settings.json", "r+"))
 game_icon = pygame.image.load("./images/LFUT22_Logo_No_BG.png")
 pygame.display.set_icon(game_icon)
