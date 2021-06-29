@@ -155,13 +155,42 @@ class OnlineScene(SceneBase):
     def __init__(self, screen):
         SceneBase.__init__(self)
         self.screen = screen
+        self.interacting_buttons = None
+        self.init()
+
+    def init(self):
+        self.buttons = []
+        self.back_button = pygame.rect.Rect(self.screen.get_width() - 1875, self.screen.get_height() - 100, 269, 80)
+        self.buttons.append(self.back_button)
+        self.back_button_text = pygame.font.Font(font,38).render("Back", True, (0, 0, 0))
 
     def ProcessInput(self, events, pressed_keys):
         for event in events:
-            pass
+            for event in events:
+                if event.type == pygame.MOUSEMOTION:
+                    mouse_pos = event.pos
+                    for button in self.buttons:
+                        if button.collidepoint(mouse_pos):
+                            self.interacting_buttons = button
+                            break
+                        else:
+                            self.interacting_buttons = None
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_pos = event.pos
+
+                    if self.back_button.collidepoint(mouse_pos):
+                        self.SwitchToScene(StartScene(self.screen))
 
     def Update(self):
         pass
 
     def Render(self, screen):
-        screen.fill((255, 255, 255))
+        screen.fill((0, 0, 0))
+
+        for button in self.buttons:
+            if button == self.interacting_buttons:
+                draw_rounded_rect(screen, button, (136, 136, 136), 18)
+            else:
+                draw_rounded_rect(screen, button, (255, 255, 255), 18)
+
+        screen.blit(self.back_button_text, (self.screen.get_width() - 1800, self.screen.get_height() - 90))
