@@ -163,6 +163,9 @@ class OnlineScene(SceneBase):
         self.back_button = pygame.rect.Rect(self.screen.get_width() - 1875, self.screen.get_height() - 100, 269, 80)
         self.buttons.append(self.back_button)
         self.back_button_text = pygame.font.Font(font,38).render("Back", True, (0, 0, 0))
+        self.play_bg = pygame.image.load("./images/play_screen.png")
+        self.play_bg = pygame.transform.scale(self.play_bg, (self.screen.get_width(), self.screen.get_height()))
+
 
     def ProcessInput(self, events, pressed_keys):
         for event in events:
@@ -186,6 +189,7 @@ class OnlineScene(SceneBase):
 
     def Render(self, screen):
         screen.fill((0, 0, 0))
+        screen.blit(self.play_bg, (0, 0))
 
         for button in self.buttons:
             if button == self.interacting_buttons:
